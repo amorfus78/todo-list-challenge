@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import Head from "next/head"
 import TabSelector from "@/components/business/TabSelector"
 import TodoList from "@/components/business/TodoList"
@@ -115,8 +114,10 @@ const App = () => {
 
         setTabs(tabs)
       }
+
+      setUpdated(!updated)
     },
-    [tabs, getSelectedTabIndex]
+    [tabs, getSelectedTabIndex, updated]
   )
 
   const newItemClick = useCallback(() => {
@@ -149,14 +150,11 @@ const App = () => {
   const handleDeleteItem = useCallback(
     (itemId) => {
       const tabTargetIndex = getSelectedTabIndex()
-      var targetIndex = null
-      for (let i in tabs[tabTargetIndex].content) {
-        if (tabs[tabTargetIndex].content[i].id === itemId) {
-          targetIndex = i
-        }
-      }
+      const newItem = tabs[tabTargetIndex].content.filter((item) => {
+        return item.id != itemId
+      })
 
-      delete tabs[tabTargetIndex].content[targetIndex]
+      tabs[tabTargetIndex].content = newItem
       setTabs(tabs)
       setUpdated(!updated)
     },
@@ -212,6 +210,7 @@ const App = () => {
           tabs={tabs}
           setSelectedTab={selectTab}
           selectedTab={selectedTab}
+          refresh={updated}
           newTab={newTab}
         />
         <MyForm

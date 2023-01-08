@@ -1,17 +1,15 @@
 const { default: TabItem } = require("./TabItem")
 
-/* eslint-disable no-console */
 const TabSelector = (props) => {
   const { tabs, setSelectedTab, selectedTab, newTab } = props
 
   const newTabClick = () => {
-    console.log("newTab")
     newTab()
   }
 
   return (
     <>
-      <div className="flex flex-row w-full">
+      <div className="flex flex-row flex-grow">
         {tabs.map((tab) => (
           <TabItem
             key={tab.id}
