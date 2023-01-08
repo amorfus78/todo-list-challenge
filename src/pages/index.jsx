@@ -11,27 +11,21 @@ const state = {
       id: 0,
       label: "todo1",
       content: [
-        { id: 0, label: "item1", checked: false },
-        { id: 1, label: "item2", checked: true },
+        { id: 3, label: "item1", checked: false },
+        { id: 4, label: "item2", checked: true },
       ],
       showCompleted: true,
     },
     {
       id: 1,
       label: "todo3",
-      content: [
-        { id: 0, label: "item1", checked: false },
-        { id: 1, label: "item2", checked: true },
-      ],
+      content: [{ id: 5, label: "item1", checked: false }],
       showCompleted: true,
     },
     {
       id: 2,
       label: "todo2",
-      content: [
-        { id: 0, label: "item1", checked: false },
-        { id: 1, label: "item2", checked: true },
-      ],
+      content: [{ id: 6, label: "item1", checked: false }],
       showCompleted: true,
     },
   ],
@@ -48,7 +42,7 @@ const App = () => {
   const [selectedTab, setSelectedTab] = useState(state.selectedTab)
   const [isTabFormDisplayed, setIsTabFormDisplayed] = useState(false)
   const [isItemFormDisplayed, setIsItemFormDisplayed] = useState(false)
-  const [currentId, setCurrentId] = useState(2)
+  const [currentId, setCurrentId] = useState(6)
   const [updated, setUpdated] = useState(state.refresh)
   const [values, setValues] = useState(initialValues)
   const [isUpdatingList, setIsUpdatingList] = useState(false)
@@ -125,8 +119,7 @@ const App = () => {
     [tabs, getSelectedTabIndex]
   )
 
-  const newItemClick = useCallback((event) => {
-    console.log(event)
+  const newItemClick = useCallback(() => {
     setIsItemFormDisplayed(true)
   }, [])
 
@@ -200,13 +193,9 @@ const App = () => {
       setIsItemFormDisplayed(true)
       setUpdatingItem(itemId)
       setValues({ name: tabs[targetIndex].content[itemId].label })
-      console.log(itemId)
     },
     [getSelectedTabIndex, tabs]
   )
-
-  console.log(tabs)
-  console.log(selectedTab)
 
   return (
     <>

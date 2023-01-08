@@ -21,13 +21,9 @@ const TodoList = (props) => {
     }
   }
 
-  const handleChkChange = (event) => {
-    handleItemChkChange(event, tab.id)
-  }
-
   const todoListButtonStyle = "p-2"
 
-  return (
+  const todoList = (
     <>
       <div className="flex flex-row p-2 justify-between border-b-2 border-black">
         <div className="flex flex-row">
@@ -100,13 +96,11 @@ const TodoList = (props) => {
         </div>
       </div>
 
-      {console.log("test1")}
-      {console.log(tab)}
       {tab.content.map((item) => (
         <TodoListItem
           key={item.id}
           item={item}
-          handleItemChkChange={handleChkChange}
+          handleItemChkChange={handleItemChkChange}
           deleteItem={handleDeleteItem}
           showCompleted={tab.showCompleted}
           editItemName={editItemName}
@@ -114,6 +108,8 @@ const TodoList = (props) => {
       ))}
     </>
   )
+
+  return todoList
 }
 
 export default TodoList
